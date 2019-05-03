@@ -7,9 +7,11 @@ class Footer extends Component {
         className="ui inverted vertical footer segment"
         style={{ marginTop: "3em", padding: "3em 0" }}
       >
-        <div className="ui container">
+        <div className="ui container smaller" style={{ fontSize: "0.9em" }}>
           <strong>Would You Rather</strong> app created using React, Redux,
-          Semantic UI and friends.
+          React Router Semantic UI and friends.
+          <br />
+          Logo from freepik.com.
         </div>
       </div>
     );
