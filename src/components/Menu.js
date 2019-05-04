@@ -37,12 +37,12 @@ class Menu extends Component {
             Leader Board
           </NavLink>
           <NavLink
-            to="/login"
+            to="/logout"
             exact
             className="ui right floated item"
             activeClassName="active"
           >
-            Login
+            Logout
           </NavLink>
         </div>
       </div>
