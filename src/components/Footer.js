@@ -9,7 +9,7 @@ class Footer extends Component {
       >
         <div className="ui container smaller" style={{ fontSize: "0.9em" }}>
           <strong>Would You Rather</strong> app created using React, Redux,
-          React Router Semantic UI and friends.
+          React Router, Semantic UI and friends.
           <br />
           Logo from freepik.com.
         </div>
