@@ -92,6 +92,7 @@ class QuestionList extends Component {
 }
 
 const mapStateToProps = state => {
+  // todo state.questions transform to array, order by timestamp
   return {
     questions: state.questions,
     users: state.users,
