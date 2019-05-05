@@ -1,38 +1,45 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Button, Card, Image, Label, Menu, Tab } from "semantic-ui-react";
 
 class QuestionList extends Component {
+  cardItemsPerRow = 3;
+
   getCardsFromQuestions = filterLogic => {
     const { questions, users } = this.props;
     const cards = Object.keys(questions)
       .filter(filterLogic)
-      .map(id => (
-        <Card key={id}>
-          <Card.Content>
-            <Image
-              floated="right"
-              size="mini"
-              src={users[questions[id].author].avatarURL}
-            />
-            <Card.Header>{users[questions[id].author].name}</Card.Header>
-            <Card.Meta>{users[questions[id].author].id}</Card.Meta>
-            <Card.Description>
-              <strong>Would you rather</strong> {questions[id].optionOne.text}{" "}
-              or {questions[id].optionTwo.text}?
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <div className="ui two buttons">
-              <Button basic color="black">
-                View Poll
-              </Button>
-            </div>
-          </Card.Content>
-        </Card>
-      ));
+      .map(id => {
+        const question = questions[id];
+        const user = users[question.author];
+        return (
+          <Card key={id}>
+            <Card.Content>
+              <Image floated="right" size="mini" src={user.avatarURL} />
+              <Card.Header>{user.name}</Card.Header>
+              <Card.Meta>Would you rather</Card.Meta>
+              <Card.Description>
+                {question.optionOne.text} or {question.optionTwo.text}?
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <div className="ui buttons">
+                <Link to={`/view-question/${id}`}>
+                  <Button basic color="black">
+                    View Poll
+                  </Button>
+                </Link>
+              </div>
+            </Card.Content>
+          </Card>
+        );
+      });
 
-    return [cards.length, <Card.Group itemsPerRow={3}>{cards}</Card.Group>];
+    return [
+      cards.length,
+      <Card.Group itemsPerRow={this.cardItemsPerRow}>{cards}</Card.Group>
+    ];
   };
 
   render() {

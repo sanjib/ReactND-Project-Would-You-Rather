@@ -33,9 +33,9 @@ class Login extends Component {
     return (
       <div className="ui container">
         <div className="ui middle aligned center aligned grid">
-          <div className="column" style={{ width: "450px", marginTop: "5em" }}>
+          <div className="column" style={{ width: "420px", marginTop: "5em" }}>
             <h2 className="ui black image header">
-              <img src="/would-you-rather.png" className="image" alt="" />
+              <img src="/would-you-rather.png" className="ui image" alt="" />
               <div className="content">Log-in to your account</div>
             </h2>
             <form className="ui large form">
