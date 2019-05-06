@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Card, Form, Image, Input } from "semantic-ui-react";
 import { handleAddQuestion } from "../actions/questions";
-import { Redirect } from "react-router-dom";
 
 class QuestionNew extends Component {
   state = { optionOne: "", optionTwo: "" };

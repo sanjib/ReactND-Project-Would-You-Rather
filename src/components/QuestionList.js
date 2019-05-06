@@ -91,10 +91,21 @@ class QuestionList extends Component {
   }
 }
 
+const sortQuestionsByTimeStamp = questions => {
+  const questionsSorted = {};
+  Object.keys(questions)
+    .map(key => questions[key])
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .forEach(question => {
+      questionsSorted[question.id] = question;
+    });
+  return questionsSorted;
+};
+
 const mapStateToProps = state => {
   // todo state.questions transform to array, order by timestamp
   return {
-    questions: state.questions,
+    questions: sortQuestionsByTimeStamp(state.questions),
     users: state.users,
     authedUser: state.authedUser
   };
