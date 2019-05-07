@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Message } from "semantic-ui-react";
 import { setAuthedUser } from "../actions/authedUser";
 
 class Login extends Component {
-  state = { selectedUser: null };
+  state = {
+    selectedUser: null,
+    message: { hidden: true, content: "" }
+  };
 
   handleUserSelection = (event, data) => {
     this.setState({ selectedUser: data.value });
@@ -12,7 +15,20 @@ class Login extends Component {
 
   handleUserLogin = () => {
     if (!this.state.selectedUser) {
-      return alert("Please select a user to login");
+      this.setState({
+        message: {
+          hidden: false,
+          content: "Please select a user"
+        }
+      });
+      return;
+    } else {
+      this.setState({
+        message: {
+          hidden: true,
+          content: ""
+        }
+      });
     }
     this.props.setAuthedUser(this.state.selectedUser);
   };
@@ -49,6 +65,9 @@ class Login extends Component {
                     onChange={this.handleUserSelection}
                   />
                 </div>
+                <Message hidden={this.state.message.hidden} negative>
+                  {this.state.message.content}
+                </Message>
                 <div className="field">
                   Select a user from above and click the login button.
                   <br />
