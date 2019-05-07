@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { Icon } from "semantic-ui-react";
 
 class Menu extends Component {
   render() {
@@ -16,12 +17,7 @@ class Menu extends Component {
             className="header item"
             activeClassName="active"
           >
-            <img
-              className="ui mini image"
-              src="/would-you-rather.png"
-              alt=""
-              style={{ marginRight: "0.5em" }}
-            />
+            <Icon name="smile" size="big" />
             Home
           </NavLink>
           <NavLink

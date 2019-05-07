@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Dropdown, Message } from "semantic-ui-react";
+import { Dropdown, Icon, Message } from "semantic-ui-react";
 import { setAuthedUser } from "../actions/authedUser";
 
 class Login extends Component {
@@ -46,12 +46,14 @@ class Login extends Component {
       image: { avatar: true, src: users[userId].avatarURL }
     }));
 
+    const { message } = this.state;
+
     return (
       <div className="ui container">
         <div className="ui middle aligned center aligned grid">
           <div className="column" style={{ width: "420px", marginTop: "5em" }}>
             <h2 className="ui black image header">
-              <img src="/would-you-rather.png" className="ui image" alt="" />
+              <Icon name="smile" />
               <div className="content">Log-in to your account</div>
             </h2>
             <form className="ui large form">
@@ -65,8 +67,8 @@ class Login extends Component {
                     onChange={this.handleUserSelection}
                   />
                 </div>
-                <Message hidden={this.state.message.hidden} negative>
-                  {this.state.message.content}
+                <Message hidden={message.hidden} negative>
+                  {message.content}
                 </Message>
                 <div className="field">
                   Select a user from above and click the login button.
