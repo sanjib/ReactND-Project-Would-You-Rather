@@ -21,6 +21,11 @@ class App extends Component {
     this.setState({ activeIndex });
   };
 
+  resetActiveIndexToZero = () => {
+    console.log("will reset active index to zero");
+    this.setState({ activeIndex: 0 });
+  };
+
   componentDidMount() {
     const { handleInitialData } = this.props;
     handleInitialData();
@@ -60,7 +65,17 @@ class App extends Component {
                 }}
                 // component={QuestionList}
               />
-              <Route path="/new-question" component={QuestionNew} />
+              <Route
+                path="/new-question"
+                render={history => {
+                  return (
+                    <QuestionNew
+                      resetActiveIndexToZero={this.resetActiveIndexToZero}
+                      history={history.history}
+                    />
+                  );
+                }}
+              />
               <Route path="/view-question/:qid" component={QuestionView} />
               <Route path="/leader-board" component={LeaderBoard} />
               <Route path="/logout" component={Logout} />

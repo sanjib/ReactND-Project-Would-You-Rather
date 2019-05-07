@@ -16,7 +16,7 @@ class QuestionNew extends Component {
 
   handleClick = async () => {
     const { optionOne: optionOneText, optionTwo: optionTwoText } = this.state;
-    const { authedUser: author, history } = this.props;
+    const { authedUser: author, history, resetActiveIndexToZero } = this.props;
 
     if (!optionOneText || !optionTwoText) {
       this.setState({
@@ -39,6 +39,7 @@ class QuestionNew extends Component {
       optionTwoText,
       author
     });
+    resetActiveIndexToZero();
     history.push("/");
   };
 
