@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import LoadingBar from "react-redux-loading-bar";
 import { handleInitialData } from "../actions/shared";
 
 import Menu from "./Menu";
@@ -36,6 +37,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Fragment>
+          <LoadingBar style={{ zIndex: 1000 }} />
           <Menu />
           <div className="ui main text container" style={{ marginTop: "7em" }}>
             <Switch>

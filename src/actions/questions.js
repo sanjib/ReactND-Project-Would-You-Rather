@@ -1,5 +1,6 @@
 import { saveQuestionAnswer, saveQuestion } from "../utils/api";
 import { userAddedQuestion, userAnsweredQuestion } from "./users";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const LOAD_QUESTIONS = "LOAD_QUESTIONS";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
@@ -22,18 +23,13 @@ function answerQuestion({ authedUser, qid, answer }) {
 
 export function handleAnswerQuestion({ authedUser, qid, answer }) {
   return dispatch => {
-    dispatch(answerQuestion({ authedUser, qid, answer }));
-    dispatch(userAnsweredQuestion({ authedUser, qid, answer }));
+    dispatch(showLoading());
 
-    return saveQuestionAnswer({ authedUser, qid, answer })
-      .then(() => {
-        console.log("saved answer");
-      })
-      .catch(e => {
-        console.warn("Error in handleAnswerQuestion(): ", e);
-        dispatch(answerQuestion({ authedUser, qid, answer }));
-        alert("There was an error saving the answer.");
-      });
+    return saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
+      dispatch(answerQuestion({ authedUser, qid, answer }));
+      dispatch(userAnsweredQuestion({ authedUser, qid, answer }));
+      dispatch(hideLoading());
+    });
   };
 }
 
@@ -48,10 +44,13 @@ function addQuestion({ question }) {
 
 export function handleAddQuestion({ optionOneText, optionTwoText, author }) {
   return dispatch => {
+    dispatch(showLoading());
+
     return saveQuestion({ optionOneText, optionTwoText, author }).then(
       question => {
         dispatch(userAddedQuestion({ authedUser: author, qid: question.id }));
-        return dispatch(addQuestion({ question }));
+        dispatch(addQuestion({ question }));
+        dispatch(hideLoading());
       }
     );
   };
