@@ -8,19 +8,34 @@ import {
   Progress,
   Button,
   Form,
-  Radio
+  Radio,
+  Message
 } from "semantic-ui-react";
 import { handleAnswerQuestion } from "../actions/questions";
 
 class QuestionView extends Component {
-  state = { votedForOption: null };
+  state = { votedForOption: null, message: { hidden: true, content: "" } };
+
   handleChange = (e, data) => {
     this.setState({ votedForOption: data.value });
   };
 
   handleClick = () => {
     if (!this.state.votedForOption) {
-      return alert("Please select an option");
+      this.setState({
+        message: {
+          hidden: false,
+          content: "Please select an option"
+        }
+      });
+      return;
+    } else {
+      this.setState({
+        message: {
+          hidden: true,
+          content: ""
+        }
+      });
     }
     // action
     const qid = this.props.match.params.qid;
@@ -86,6 +101,7 @@ class QuestionView extends Component {
 
     const question = questions[qid];
     const user = users[question.author];
+    const { message } = this.state;
 
     return (
       <Card key={qid}>
@@ -113,6 +129,9 @@ class QuestionView extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Field>
+              <Message hidden={message.hidden} negative>
+                {message.content}
+              </Message>
             </Form>
           </Card.Description>
         </Card.Content>

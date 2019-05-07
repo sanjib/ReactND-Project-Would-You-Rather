@@ -45,6 +45,7 @@ class QuestionNew extends Component {
   render() {
     const { authedUser, users } = this.props;
     const user = users[authedUser];
+    const { message } = this.state;
 
     return (
       <div>
@@ -74,8 +75,8 @@ class QuestionNew extends Component {
                       onChange={this.handleOnChange}
                     />
                   </Form.Field>
-                  <Message hidden={this.state.message.hidden} negative>
-                    {this.state.message.content}
+                  <Message hidden={message.hidden} negative>
+                    {message.content}
                   </Message>
                 </Form>
               </Card.Description>
