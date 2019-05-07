@@ -45,7 +45,8 @@ class QuestionList extends Component {
   };
 
   render() {
-    const { questions, authedUser } = this.props;
+    const { questions, authedUser, activeIndex, handleTabChange } = this.props;
+
     const [
       unansweredQuestionsCount,
       unansweredQuestionsContent = "All questions have been answered."
@@ -54,6 +55,7 @@ class QuestionList extends Component {
         !questions[id].optionOne.votes.includes(authedUser) &&
         !questions[id].optionTwo.votes.includes(authedUser)
     );
+
     const [
       answeredQuestionsCount,
       answeredQuestionsContent = "There are no answered questions available."
@@ -62,6 +64,7 @@ class QuestionList extends Component {
         questions[qid].optionOne.votes.includes(authedUser) ||
         questions[qid].optionTwo.votes.includes(authedUser)
     );
+
     const panes = [
       {
         menuItem: (
@@ -84,7 +87,11 @@ class QuestionList extends Component {
     return (
       <div>
         <div>
-          <Tab panes={panes} />
+          <Tab
+            panes={panes}
+            activeIndex={activeIndex}
+            onTabChange={(e, data) => handleTabChange(e, data)}
+          />
         </div>
       </div>
     );

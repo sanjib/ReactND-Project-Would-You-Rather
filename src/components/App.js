@@ -15,6 +15,12 @@ import Login from "./Login";
 import Logout from "./Logout";
 
 class App extends Component {
+  state = { activeIndex: 0 };
+
+  handleTabChange = (e, { activeIndex }) => {
+    this.setState({ activeIndex });
+  };
+
   componentDidMount() {
     const { handleInitialData } = this.props;
     handleInitialData();
@@ -41,7 +47,19 @@ class App extends Component {
           <Menu />
           <div className="ui main text container" style={{ marginTop: "7em" }}>
             <Switch>
-              <Route path="/" exact component={QuestionList} />
+              <Route
+                path="/"
+                exact
+                render={() => {
+                  return (
+                    <QuestionList
+                      handleTabChange={this.handleTabChange}
+                      activeIndex={this.state.activeIndex}
+                    />
+                  );
+                }}
+                // component={QuestionList}
+              />
               <Route path="/new-question" component={QuestionNew} />
               <Route path="/view-question/:qid" component={QuestionView} />
               <Route path="/leader-board" component={LeaderBoard} />
