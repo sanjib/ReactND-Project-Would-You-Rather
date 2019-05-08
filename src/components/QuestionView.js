@@ -38,17 +38,21 @@ class QuestionView extends Component {
       });
     }
     // action
-    const qid = this.props.match.params.qid;
+    const qid = this.props.match.params.question_id;
     const answer = this.state.votedForOption;
     const { authedUser, handleAnswerQuestion } = this.props;
     handleAnswerQuestion({ authedUser, qid, answer });
   };
 
   questionResult = () => {
-    const qid = this.props.match.params.qid;
+    const qid = this.props.match.params.question_id;
     const { authedUser, questions, users } = this.props;
 
     const question = questions[qid];
+    if (!question) {
+      return;
+    }
+
     const user = users[question.author];
 
     const votedForOptionOne = question.optionOne.votes.includes(authedUser);
@@ -65,7 +69,7 @@ class QuestionView extends Component {
       <Card key={qid}>
         <Card.Content>
           <Image floated="right" size="mini" src={user.avatarURL} />
-          <Card.Header>{user.name}</Card.Header>
+          <Card.Header>{user.name} asks</Card.Header>
           <Card.Meta>Would you rather</Card.Meta>
           <Card.Description>
             <Segment>
@@ -95,11 +99,16 @@ class QuestionView extends Component {
       </Card>
     );
   };
+
   questionAnswer = () => {
-    const qid = this.props.match.params.qid;
+    const qid = this.props.match.params.question_id;
     const { questions, users } = this.props;
 
     const question = questions[qid];
+    if (!question) {
+      return;
+    }
+
     const user = users[question.author];
     const { message } = this.state;
 
@@ -107,7 +116,7 @@ class QuestionView extends Component {
       <Card key={qid}>
         <Card.Content>
           <Image floated="right" size="mini" src={user.avatarURL} />
-          <Card.Header>{user.name}</Card.Header>
+          <Card.Header>{user.name} asks</Card.Header>
           <Card.Meta>Would you rather</Card.Meta>
           <Card.Description>
             <Form>
@@ -148,16 +157,33 @@ class QuestionView extends Component {
 
   didAnswer() {
     const { authedUser, questions } = this.props;
-    const qid = this.props.match.params.qid;
+    const qid = this.props.match.params.question_id;
+
+    const question = questions[qid];
+    if (!question) {
+      return null;
+    }
+
     return (
-      questions[qid].optionOne.votes.includes(authedUser) ||
-      questions[qid].optionTwo.votes.includes(authedUser)
+      question.optionOne.votes.includes(authedUser) ||
+      question.optionTwo.votes.includes(authedUser)
     );
+  }
+
+  componentDidMount() {
+    const { questions } = this.props;
+    const qid = this.props.match.params.question_id;
+
+    const question = questions[qid];
+    if (!question) {
+      const { history } = this.props;
+      history.push("/404");
+    }
   }
 
   render() {
     let result;
-    if (this.didAnswer()) {
+    if (this.didAnswer() === true) {
       result = this.questionResult();
     } else {
       result = this.questionAnswer();

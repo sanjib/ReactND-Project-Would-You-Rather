@@ -20,16 +20,11 @@ class Menu extends Component {
             <Icon name="smile" size="big" />
             Home
           </NavLink>
-          <NavLink
-            to="/new-question"
-            exact
-            className="item"
-            activeClassName="active"
-          >
+          <NavLink to="/add" exact className="item" activeClassName="active">
             New Question
           </NavLink>
           <NavLink
-            to="/leader-board"
+            to="/leaderboard"
             exact
             className="item"
             activeClassName="active"

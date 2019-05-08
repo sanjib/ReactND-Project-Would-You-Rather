@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Image, Label, Menu, Tab } from "semantic-ui-react";
 
 class QuestionList extends Component {
-  cardItemsPerRow = 3;
+  cardItemsPerRow = 2;
 
   getCardsFromQuestions = filterLogic => {
     const { questions, users } = this.props;
@@ -17,7 +17,7 @@ class QuestionList extends Component {
           <Card key={qid}>
             <Card.Content>
               <Image floated="right" size="mini" src={user.avatarURL} />
-              <Card.Header>{user.name}</Card.Header>
+              <Card.Header>{user.name} asks</Card.Header>
               <Card.Meta>Would you rather</Card.Meta>
               <Card.Description>
                 {question.optionOne.text} or {question.optionTwo.text}?
@@ -25,7 +25,7 @@ class QuestionList extends Component {
             </Card.Content>
             <Card.Content extra>
               <div className="ui two buttons">
-                <Link to={`/view-question/${qid}`} style={{ width: "100%" }}>
+                <Link to={`/questions/${qid}`} style={{ width: "100%" }}>
                   <Button fluid basic color="black">
                     View Poll
                   </Button>

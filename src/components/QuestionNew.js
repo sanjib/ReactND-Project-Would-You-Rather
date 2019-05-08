@@ -54,7 +54,7 @@ class QuestionNew extends Component {
           <Card>
             <Card.Content>
               <Image floated="right" size="mini" src={user.avatarURL} />
-              <Card.Header>{user.name}</Card.Header>
+              <Card.Header>{user.name} asks</Card.Header>
               <Card.Meta>Would you rather</Card.Meta>
               <Card.Description>
                 <Form>

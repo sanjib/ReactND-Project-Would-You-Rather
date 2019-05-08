@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading-bar";
 import { handleInitialData } from "../actions/shared";
@@ -13,8 +13,10 @@ import QuestionView from "./QuestionView";
 import LeaderBoard from "./LeaderBoard";
 import Login from "./Login";
 import Logout from "./Logout";
+import PageNotFound from "./PageNotFound";
 
 class App extends Component {
+  // remember the current tab: unanswered or answered questions
   state = { activeIndex: 0 };
 
   handleTabChange = (e, { activeIndex }) => {
@@ -22,7 +24,8 @@ class App extends Component {
   };
 
   resetActiveIndexToZero = () => {
-    console.log("will reset active index to zero");
+    // resets active tab index to zero (unanswered questions)
+    // used after creating a new question
     this.setState({ activeIndex: 0 });
   };
 
@@ -38,8 +41,7 @@ class App extends Component {
       return (
         <BrowserRouter>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Redirect to="/login" />
+            <Route path="/" component={Login} />
           </Switch>
         </BrowserRouter>
       );
@@ -63,10 +65,9 @@ class App extends Component {
                     />
                   );
                 }}
-                // component={QuestionList}
               />
               <Route
-                path="/new-question"
+                path="/add"
                 render={history => {
                   return (
                     <QuestionNew
@@ -76,10 +77,11 @@ class App extends Component {
                   );
                 }}
               />
-              <Route path="/view-question/:qid" component={QuestionView} />
-              <Route path="/leader-board" component={LeaderBoard} />
+              <Route path="/questions/:question_id" component={QuestionView} />
+              <Route path="/leaderboard" component={LeaderBoard} />
               <Route path="/logout" component={Logout} />
-              <Redirect to="/" />
+              <Route path="/404" component={PageNotFound} />
+              <Route path="/" component={PageNotFound} />
             </Switch>
           </div>
           <Footer />
