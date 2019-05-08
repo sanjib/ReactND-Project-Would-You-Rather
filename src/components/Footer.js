@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Icon } from "semantic-ui-react";
 
 class Footer extends Component {
   render() {
@@ -9,8 +8,8 @@ class Footer extends Component {
         style={{ marginTop: "3em", padding: "3em 0" }}
       >
         <div className="ui container smaller" style={{ fontSize: "0.9em" }}>
-          <Icon name="smile" /> Would You Rather app created using React, Redux,
-          React Router, Semantic UI and friends.
+          {new Date().getFullYear()}, Would You Rather app created using React,
+          Redux, React Router, Semantic UI and friends.
         </div>
       </div>
     );

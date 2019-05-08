@@ -66,11 +66,11 @@ class QuestionView extends Component {
       Math.round((voteCountOptionTwo / totalVotes) * 10000) / 100;
 
     return (
-      <Card key={qid}>
+      <Card key={qid} style={{ width: "400px" }}>
         <Card.Content>
-          <Image floated="right" size="mini" src={user.avatarURL} />
+          <Image floated="right" size="tiny" src={user.avatarURL} />
           <Card.Header>{user.name} asks</Card.Header>
-          <Card.Meta>Would you rather</Card.Meta>
+          <div>Would you rather</div>
           <Card.Description>
             <Segment>
               {votedForOptionOne && (
@@ -113,11 +113,11 @@ class QuestionView extends Component {
     const { message } = this.state;
 
     return (
-      <Card key={qid}>
+      <Card key={qid} style={{ width: "400px" }}>
         <Card.Content>
-          <Image floated="right" size="mini" src={user.avatarURL} />
+          <Image floated="right" size="tiny" src={user.avatarURL} />
           <Card.Header>{user.name} asks</Card.Header>
-          <Card.Meta>Would you rather</Card.Meta>
+          <div>Would you rather</div>
           <Card.Description>
             <Form>
               <Form.Field>

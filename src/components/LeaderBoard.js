@@ -49,14 +49,14 @@ class Leaderboard extends Component {
         <Card key={uid}>
           <Image src={user.avatarURL} label={label} />
           <Card.Content>
-            <Card.Header>
-              {user.name}
+            <Card.Header>{user.name}</Card.Header>
+            <Card.Meta>
+              Rank &nbsp;
               <Label size="tiny">
                 {rank}
                 {rankSuffix.shift() || "th"}
               </Label>
-            </Card.Header>
-
+            </Card.Meta>
             <Card.Description>
               <Grid columns={2} divided style={{ fontSize: "1rem" }}>
                 <Grid.Row>

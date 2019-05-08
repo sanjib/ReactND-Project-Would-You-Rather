@@ -16,12 +16,12 @@ class QuestionList extends Component {
         return (
           <Card key={qid}>
             <Card.Content>
-              <Image floated="right" size="mini" src={user.avatarURL} />
+              <Image floated="right" size="tiny" src={user.avatarURL} />
               <Card.Header>{user.name} asks</Card.Header>
-              <Card.Meta>Would you rather</Card.Meta>
-              <Card.Description>
-                {question.optionOne.text} or {question.optionTwo.text}?
-              </Card.Description>
+              <div>
+                Would you rather {question.optionOne.text} or{" "}
+                {question.optionTwo.text}?
+              </div>
             </Card.Content>
             <Card.Content extra>
               <div className="ui two buttons">

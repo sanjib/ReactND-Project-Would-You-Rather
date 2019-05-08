@@ -51,16 +51,15 @@ class QuestionNew extends Component {
     return (
       <div>
         <Card.Group centered>
-          <Card>
+          <Card style={{ width: "400px" }}>
             <Card.Content>
-              <Image floated="right" size="mini" src={user.avatarURL} />
+              <Image floated="right" size="tiny" src={user.avatarURL} />
               <Card.Header>{user.name} asks</Card.Header>
-              <Card.Meta>Would you rather</Card.Meta>
+              <div>Would you rather</div>
               <Card.Description>
                 <Form>
                   <Form.Field>
                     <Input
-                      size="mini"
                       id="optionOne"
                       placeholder="Enter Option One Text Here"
                       value={this.state.optionOne}
@@ -69,7 +68,6 @@ class QuestionNew extends Component {
                   </Form.Field>
                   <Form.Field>
                     <Input
-                      size="mini"
                       id="optionTwo"
                       placeholder="Enter Option One Text Here"
                       value={this.state.optionTwo}

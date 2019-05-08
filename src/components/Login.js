@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Dropdown, Icon, Message } from "semantic-ui-react";
+import { Dropdown, Image, Message } from "semantic-ui-react";
 import { setAuthedUser } from "../actions/authedUser";
 
 class Login extends Component {
@@ -69,8 +69,20 @@ class Login extends Component {
       <div className="ui container">
         <div className="ui middle aligned center aligned grid">
           <div className="column" style={{ width: "420px", marginTop: "5em" }}>
-            <h2 className="ui black image header">
-              <Icon name="smile" />
+            <Image
+              src="/would-you-rather-black.png"
+              size="small"
+              style={{
+                position: "absolute",
+                zIndex: "100",
+                top: "-5px",
+                left: "20px"
+              }}
+            />
+            <h2
+              className="ui black image header"
+              style={{ marginLeft: "60px", marginBottom: "50px" }}
+            >
               <div className="content">Log-in to your account</div>
             </h2>
             <form className="ui large form">

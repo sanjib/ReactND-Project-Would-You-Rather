@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { Icon } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 
 class Menu extends Component {
   render() {
@@ -11,13 +11,15 @@ class Menu extends Component {
     return (
       <div className="ui fixed inverted menu">
         <div className="ui container">
+          <div className="item">
+            <Image src="/would-you-rather-white.png" size="tiny" />
+          </div>
           <NavLink
             to="/"
             exact
             className="header item"
             activeClassName="active"
           >
-            <Icon name="smile" size="big" />
             Home
           </NavLink>
           <NavLink to="/add" exact className="item" activeClassName="active">
