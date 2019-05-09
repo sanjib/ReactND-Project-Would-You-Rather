@@ -11,15 +11,17 @@ class Menu extends Component {
     return (
       <div className="ui fixed inverted menu">
         <div className="ui container">
-          <div className="item">
-            <Image src="/would-you-rather-white.png" size="tiny" />
-          </div>
+          <div className="item" />
           <NavLink
             to="/"
             exact
             className="header item"
             activeClassName="active"
           >
+            <Image
+              src="/would-you-rather.png"
+              style={{ width: "50px", marginRight: "5px" }}
+            />
             Home
           </NavLink>
           <NavLink to="/add" exact className="item" activeClassName="active">

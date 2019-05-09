@@ -70,18 +70,18 @@ class Login extends Component {
         <div className="ui middle aligned center aligned grid">
           <div className="column" style={{ width: "420px", marginTop: "5em" }}>
             <Image
-              src="/would-you-rather-black.png"
-              size="small"
+              src="/would-you-rather.png"
               style={{
                 position: "absolute",
                 zIndex: "100",
-                top: "-5px",
-                left: "20px"
+                top: "15px",
+                left: "30px",
+                width: "85px"
               }}
             />
             <h2
               className="ui black image header"
-              style={{ marginLeft: "60px", marginBottom: "50px" }}
+              style={{ marginLeft: "60px", marginBottom: "30px" }}
             >
               <div className="content">Log-in to your account</div>
             </h2>
